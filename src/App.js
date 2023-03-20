@@ -1,95 +1,76 @@
-import './App.css';
-import { useState } from 'react';
-import Item from "./components/Item";
-import CartHeader from "./components/CartHeader"
-import CartItem from "./components/CartItem"
-import CartFooter from "./components/CartFooter"
-import {items} from './components/data.js';
+import "./App.css";
+
+import { useState } from "react";
+import { items } from "./components/data.js";
+import Navbar from "./components/Navbar";
+import ItemsArea from "./components/ItemsArea";
+import CartArea from "./components/CartArea";
 
 let nextID = 0;
 
-
 function App() {
-  const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
-  const [isEmpty, setIsEmpty] = useState(true);
-  
-  function addItem(id){
-    setIsEmpty(false);
+
+  function addItem(id) {
     const index = cartItems.findIndex((item) => item.itemId === id);
     if (index !== -1) {
-      const newData = [...cartItems]
+      const newData = [...cartItems];
       newData[index].quantity = cartItems[index].quantity + 1;
       setCartItems(newData);
-      setTotal(total+newData[index].price);
     } else {
+      let itemsArray = [...cartItems];
       const item = items[id];
-      cartItems.push({
+      const newData = {
         id: nextID++,
         itemId: item.id,
         title: item.title,
         price: item.price,
-        quantity: 1
-      });
-      setTotal(total+item.price);
+        quantity: 1,
+      };
+      itemsArray.push(newData);
+      setCartItems([...itemsArray]);
     }
   }
 
-  function emptyCart(){
-    setIsEmpty(true);
+  function emptyCart() {
     setCartItems([]);
-    setTotal(0); 
   }
-  
-  function removeItem(id){
-    if(cartItems.length == 1){
+
+  function removeItem(id) {
+    if (cartItems.length === 1) {
       emptyCart();
-    }
-    else{
-    const index = cartItems.findIndex((item) => item.itemId === id);
-    setTotal(total-(cartItems[index].quantity * cartItems[index].price));
-    const updatedCartItems = cartItems.filter(item => item.itemId !== id);
-    setCartItems(updatedCartItems);
+    } else {
+      const updatedCartItems = cartItems.filter((item) => item.itemId !== id);
+      setCartItems(updatedCartItems);
     }
   }
 
-  function decrementItem(id){
+  function decrementItem(id) {
     const index = cartItems.findIndex((item) => item.itemId === id);
-    if(cartItems[index].quantity == 1){
+    if (cartItems[index].quantity === 1) {
       removeItem(id);
-    }
-    else{
-      setTotal(total-cartItems[index].price);
-      const updatedCartItems = [...cartItems]
+    } else {
+      const updatedCartItems = [...cartItems];
       updatedCartItems[index].quantity = cartItems[index].quantity - 1;
       setCartItems(updatedCartItems);
     }
   }
 
-
-  return ( 
+  return (
     <>
-      <nav className="navbar navbar-dark bg-dark">
-        <div className="container-fluid">
-          <a className="navbar-brand">E-mart</a>
-        </div>
-      </nav>
+      <Navbar />
       <div className="row m-0 pt-3">
-        <div className="col-7 col-sm-5 col-md-6 col-lg-7 text-center pt-2">
-          <h3 className="text-center mb-5">Items</h3>
-          <div className="row row-cols-1 row-cols-xxl-3 row-cols-xl-2 row-cols-md-1">
-            <Item addToCart={addItem}/>
-          </div>
-        </div>
-        <div id="cart-area" className="col-5 col-sm-7 col-md-6 col-lg-5 pt-2">
-          <h3 className="text-center mb-5">Cart</h3>
-          <CartHeader />
-          <CartItem cartItems={cartItems} removeItem={removeItem} addItem={addItem} decrementItem={decrementItem}/>
-          <CartFooter total={total} emptyCart={emptyCart} isEmpty={isEmpty} />
-        </div>
+        <ItemsArea addItem={addItem} />
+        <CartArea
+          addItem={addItem}
+          removeItem={removeItem}
+          decrementItem={decrementItem}
+          emptyCart={emptyCart}
+          cartItems={cartItems}
+        />
       </div>
     </>
-    )
+  );
 }
 
 export default App;
