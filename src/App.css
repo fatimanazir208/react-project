@@ -8,6 +8,10 @@
   object-fit: contain;
 }
 
+.link{
+  color: white;
+}
+
 .counter-btn{
   width:1.5rem;
 }
