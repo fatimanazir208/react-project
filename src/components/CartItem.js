@@ -1,27 +1,44 @@
+import {Divider, Grid, IconButton, Typography} from "@material-ui/core";
+import RemoveIcon from '@material-ui/icons/ClearSharp';
+import DecrementIcon from '@material-ui/icons/RemoveCircle';
+import AddIcon from '@material-ui/icons/AddCircle';
+
+
 function CartItem(props) {
   const {cartItems, addItem, removeItem, decrementItem} = props
   return (
     <>
         {cartItems.map(cartItem => (
-          <div className="row mx-2 py-2 border-bottom fw-bold" key={cartItem.id}>
-            <div className="col-1 text-center">
-              <button onClick={() => removeItem(cartItem.itemId)} className='btn btn-rounded btn-danger py-0 px-2'>x</button>
-            </div>
-            <div className="col-5">{cartItem.title}</div>
-            <div className='col-3 text-center p-0 mx-auto'>
-              <div className='btn-group' role='group'>
-                <button onClick={() => decrementItem(cartItem.itemId)} className='counter-btn btn btn-outline-secondary border-dark rounded-start py-0 px-1'>-</button>
-                <p className='qty border-top border-bottom border-1 border-dark m-0 p-0'>{cartItem.quantity}</p>
-                <button onClick={() => addItem(cartItem.itemId)} className='counter-btn btn btn-outline-secondary border-dark rounded-end py-0 px-1'>+</button>
-              </div>
-            </div>
-            <div className="col-3 text-center">Rs. {cartItem.price}</div> 
+          <div>
+            <Grid container key={cartItem.id} style={{padding: '0px', backgroundColor: "white"}}>
+              <Grid item xs={1} style={{margin: 'auto'}}  >
+                <IconButton component="span" onClick={() => removeItem(cartItem.itemId)} style={{padding: '0px'}}>
+                  <RemoveIcon />
+                </IconButton>
+              </Grid>
+              <Grid item xs={4} style={{margin: 'auto'}}>
+                <Typography>{cartItem.title}</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: 'center'}}>
+                <IconButton className={"quantity-btn"}  onClick={() => decrementItem(cartItem.itemId)}>
+                  <DecrementIcon />
+                </IconButton>
+                <Typography>{cartItem.quantity}</Typography>
+                <IconButton className={"quantity-btn"} onClick={() => addItem(cartItem.itemId)}>
+                  <AddIcon />
+                </IconButton>
+                </div>
+              </Grid>
+              <Grid item xs={3} style={{margin: 'auto'}}>
+                <Typography>Rs. {cartItem.price}</Typography>
+              </Grid>
+            </Grid>
+            <Divider style={{backgroundColor: "grey", marginBottom: '10px'}}/>
           </div>
+
         ))}
-
         
-  
-
     </>
   )
   }

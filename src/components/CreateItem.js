@@ -1,4 +1,6 @@
+import { Box, Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
 import { useState } from "react";
+
 
 function CreateItem(props) {
   const {items, setItems} = props
@@ -7,6 +9,7 @@ function CreateItem(props) {
   const [itemPrice, setItemPrice] = useState(0)
 
   const handleSubmit = (event) => {
+    console.log("entered form submitted");
     event.preventDefault();
     let itemsArray = [...items];
     const newItem = {
@@ -25,29 +28,55 @@ function CreateItem(props) {
 
   return (
     <>
-    <h2 className="m-2">Add new item</h2>
-    <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label className="form-label m-2">Title</label>
-        <input type="text" value={itemTitle} onChange={e => setItemTitle(e.target.value)} />
-      </div>
-      <div className="mb-3">
-        <label className="form-label m-2">Image Source</label>
-        <input type="text" value={itemImage} onChange={e => setItemImage(e.target.value)} />
-      </div>
-      <div className="mb-3">
-        <label className="form-label m-2">Price</label>
-        <input type="number" value={itemPrice} onChange={e => setItemPrice(parseInt(e.target.value))} />
-      </div>
-      <button type="submit" className="btn btn-primary m-2">Submit</button>
-    </form>
-    <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.title} - {item.price} - {item.img_src}
-          </li>
-        ))}
-      </ul>
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        style={{height:'100vh'}}
+      >
+        <Grid item >
+          <Typography variant="h4" style={{padding: '40px ', fontWeight:'bold'}}>
+            Add new item
+          </Typography>
+        </Grid>
+        <Grid item >
+          <Paper style={{padding: '1px 10px', backgroundColor: "#f0f1e4"}}>
+            <form onSubmit={handleSubmit} className="form"  alignContent="center" >
+              <div>
+              <Typography id="form-label" >Title</Typography>
+                <TextField className="form-field" onChange={e => setItemTitle(e.target.value)}
+                  required
+                  defaultValue={itemTitle}
+                  variant="outlined"
+                />
+              </div>
+              <div>
+              <Typography id="form-label">Image Source</Typography>
+                <TextField className="form-field" onChange={e => setItemImage(e.target.value)} 
+                  required
+                  defaultValue={itemImage}
+                  variant="outlined"
+                />
+              </div>
+              <div>
+              <Typography id="form-label">Price</Typography>
+                <TextField  className="form-field"  onChange={e => setItemPrice(parseInt(e.target.value))}
+                  required
+                  type="number"
+                  defaultValue={itemPrice}
+                  variant="outlined"
+                />
+              </div>
+              <Box display="flex" justifyContent="center" alignItems="center"><Button id="submit-btn" type="submit">Submit</Button></Box>
+            </form>
+    
+          </Paper>
+        </Grid>
+      </Grid>
+     
+        
+        
+
     </>
   );
 }

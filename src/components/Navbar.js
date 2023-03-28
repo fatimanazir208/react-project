@@ -1,4 +1,6 @@
+import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+
 
 
 const Navbar = () => {
@@ -8,17 +10,21 @@ const Navbar = () => {
     console.log("handle click");
     navigate(path);
   }
+  
+  
 
   return (
-    <nav className="navbar navbar-dark bg-dark">
-      <div className="container-fluid">
-        <div className="navbar-brand" onClick={() => handleClick("/")}>E-mart</div>
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 flex-row align-items-center">
-          <li className="nav-link mx-2" onClick={() => handleClick("/")}>Cart</li>
-          <li className="nav-link mx-2" onClick={() => handleClick("/new/item")}>Create item</li>
-        </ul>
-      </div>
-    </nav>
+    <div className="app-bar-container">
+    <AppBar position="static" id="app-bar" >
+      <Toolbar style={{margin:'0px 20px'}}>
+        <Typography variant="h6" onClick={() => handleClick("/")} className="app-bar-title">
+          E-mart
+        </Typography>
+        <Button className="button-capitalize" color="inherit" onClick={() => handleClick("/new/item")}>Create Item</Button>
+        <Button className="button-capitalize" color="inherit" onClick={() => handleClick("/")}>Cart</Button>
+      </Toolbar>
+    </AppBar>
+  </div>
   );
 };
 

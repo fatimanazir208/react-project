@@ -1,3 +1,5 @@
+import { Button, Divider, Grid } from "@material-ui/core";
+
 function CartFooter(props) {
   const { emptyCart, cartItems } = props;
 
@@ -9,19 +11,23 @@ function CartFooter(props) {
 
   return (
     <>
-      <div className="row mx-2 py-2 fw-bold">
-        <div className="col-1"></div>
-        <div className="col-5"></div>
-        <div className="col-3 text-center">Total</div>
-        <div className="col-3 text-center">Rs {getTotal()}</div>
-      </div>
+    <Grid container>
+      <Grid item xs={1}>
+        
+      </Grid>
+      <Grid item xs={4}>
+    
+      </Grid>
+      <Grid item xs={4}>
+        Total
+      </Grid>
+      <Grid item xs={3}>
+        Rs {getTotal()}
+      </Grid>
+    </Grid>
+    <Divider style={{backgroundColor: "grey", margin: '10px 0px'}}/>
       {cartItems.length > 0 && (
-        <button
-          onClick={() => emptyCart()}
-          className="btn btn-secondary btn-sm m-4 px-3"
-        >
-          Empty Cart
-        </button>
+        <Button variant="contained"  className="button-capitalize" id="empty-cart-btn" onClick={() => emptyCart()}>Empty Cart</Button>
       )}
     </>
   );

@@ -1,3 +1,5 @@
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@material-ui/core";
+import CartIcon from '@material-ui/icons/AddShoppingCartSharp';
 import React from "react";
 
 class Item extends React.Component{
@@ -11,16 +13,27 @@ class Item extends React.Component{
       <>
         {
           items.map((item) => 
-          <div className="col mb-5" key={item.id}>
-            <div className="card h-100 rounded-0 border-0 mx-auto shadow">
-              <img src={item.img_src} className="card-img-top mx-auto rounded-0 mb-2"></img>
-              <div className="card-body p-1">
-                <h5 className="card-title m-0">{item.title}</h5>
-                <p className="card-text mb-1 text-muted">{item.price}</p>
-                <button className="btn btn-success btn-sm w-100 mt-2" id={item.id} onClick={() => addToCart(item.id)}>Add to cart</button>
+          <Grid item xs={12} sm={12} md={6} lg={4} key={item.id} id="items-grid">
+            <Card raised style={{width: '100%'}}>
+              <div style={{padding:'10px'}}>
+              <CardMedia className="cardImage" style={{ height: '120px', objectFit: 'contain' }}
+                  component="img"
+                  image={item.img_src}
+                />
               </div>
-            </div>
-          </div>
+              <CardContent>
+                <Typography variant="h5">
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Rs. {item.price}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button variant="contained" size="small" endIcon={<CartIcon />} className="button-capitalize" id="add-to-cart-btn" fullWidth onClick={() => addToCart(item.id)}>Add to cart</Button>
+              </CardActions>
+            </Card>
+          </Grid>
           )
         }
       </>

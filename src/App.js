@@ -16,7 +16,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={ <Cart items={items}/> } />
+        <Route path="/" element={ <Cart items={items}/> }/>
         <Route path="new/item" element={ <CreateItem items={items} setItems={setItems}/> } />
       </Routes>
     </>

@@ -1,21 +1,68 @@
-.card{
-  width: 14rem;
+#root{
+  background-color: #e1e5c2 ;
+}
+.cardImage{
+  height: 100px;
+  width: 200px;
+}
+.app-bar-container{
+  flex-grow: 1;
+}
+#app-bar{
+  background-color: #39395f;
+}
+.app-bar-title{
+  flex-grow: 1;
+  font-weight: bold !important;
 }
 
-.card-img-top{
-  width:12rem ;
-  height: 9rem;
-  object-fit: contain;
+.button-capitalize{
+  text-transform: capitalize !important;
 }
 
-.link{
+#add-to-cart-btn{
+  background-color: #416859;
+  color: white;
+}
+#empty-cart-btn{
+  margin: 20px;
+  background-color: rgb(212, 54, 54);
   color: white;
 }
 
-.counter-btn{
-  width:1.5rem;
+#items-grid{
+  flex: 0 0 auto;
 }
 
-.qty{
-  width:2rem;
+.quantity-btn{
+  background-color: gray;
+}
+
+.create-item-container{
+  margin: 20px 40px;
+}
+
+.form>*{
+  margin: 20px 0px;
+}
+.form-field{
+  width: 500px;
+  margin-bottom:30px;
+}
+
+#form-label{
+  margin: 10px 0px;
+}
+
+#submit-btn{
+  width: 40%;
+  height: 40px;
+  background-color: #416a59 ;
+  color: white;
+}
+
+#heading{
+  padding:10px 0px 20px 0px;
+  font-size: 28px;
+  font-weight: 400;
 }

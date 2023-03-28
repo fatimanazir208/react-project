@@ -1,12 +1,23 @@
+import { Divider, Grid} from "@material-ui/core";
+
 function CartHeader() {
 return (
   <>
-    <div className="row mx-2 py-2 border-bottom fw-bold">
-        <div className="col-1"></div>
-        <div className="col-5">Item</div>
-        <div className="col-3 text-center">Qty</div>
-        <div className="col-3 text-center">Price</div> 
-    </div>
+    <Grid container>
+      <Grid item xs={1}>
+        
+      </Grid>
+      <Grid item xs={4}>
+        Item
+      </Grid>
+      <Grid item xs={4}>
+        Qty
+      </Grid>
+      <Grid item xs={3}>
+        Price
+      </Grid>
+    </Grid>
+    <Divider style={{backgroundColor: "grey", margin: '10px 0px'}}/>
   </>
 )
 }
