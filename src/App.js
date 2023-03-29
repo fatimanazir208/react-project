@@ -4,15 +4,12 @@ import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 import CreateItem from "./components/CreateItem";
 import { data } from "./data";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Grid } from "@material-ui/core";
 
 function App() {
   const [items, setItems] = useState(data);
 
-  useEffect(() => {
-    console.log("use effect");
-  });
   return (
     <>
       <Navbar />

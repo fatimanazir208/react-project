@@ -27,9 +27,7 @@ const Item = (props) => {
             </div>
             <CardContent>
               <Typography variant="h5">{item.title}</Typography>
-              <Typography variant="body2" color="text.secondary">
-                Rs. {item.price}
-              </Typography>
+              <Typography variant="body2">Rs. {item.price}</Typography>
             </CardContent>
             <CardActions>
               <Button

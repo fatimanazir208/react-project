@@ -1,68 +1,68 @@
-#root{
-  background-color: #e1e5c2 ;
+#root {
+  background-color: #e1e5c2;
 }
-.cardImage{
+.cardImage {
   height: 100px;
   width: 200px;
 }
-.app-bar-container{
+.app-bar-container {
   flex-grow: 1;
 }
-#app-bar{
+#app-bar {
   background-color: #39395f;
 }
-.app-bar-title{
+.app-bar-title {
   flex-grow: 1;
   font-weight: bold !important;
 }
 
-.button-capitalize{
+.button-capitalize {
   text-transform: capitalize !important;
 }
 
-#add-to-cart-btn{
+#add-to-cart-btn {
   background-color: #416859;
   color: white;
 }
-#empty-cart-btn{
+#empty-cart-btn {
   margin: 20px;
   background-color: rgb(212, 54, 54);
   color: white;
 }
 
-#items-grid{
+#items-grid {
   flex: 0 0 auto;
 }
 
-.quantity-btn{
+.quantity-btn {
   background-color: gray;
 }
 
-.create-item-container{
+.create-item-container {
   margin: 20px 40px;
 }
 
-.form>*{
+.form > * {
   margin: 20px 0px;
 }
-.form-field{
-  width: 500px;
-  margin-bottom:30px;
+.form-field {
+  width: 100%;
+  margin-bottom: 30px;
 }
 
-#form-label{
+#form-label {
   margin: 10px 0px;
 }
 
-#submit-btn{
+#submit-btn {
   width: 40%;
   height: 40px;
-  background-color: #416a59 ;
+  background-color: #416a59;
   color: white;
 }
 
-#heading{
-  padding:10px 0px 20px 0px;
+#heading {
+  padding: 10px 0px 20px 0px;
   font-size: 28px;
   font-weight: 400;
 }
