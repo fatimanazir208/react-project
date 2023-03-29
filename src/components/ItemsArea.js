@@ -5,18 +5,10 @@ function ItemsArea(props) {
   const { items, addItem } = props;
 
   return (
-    <>
-      <Grid container spacing={3} >
-        <Grid xs={12} >
-          <Typography id="heading">
-            Items
-          </Typography>
-        </Grid>
-        <Grid container spacing={3} style={{padding: '0px 30px', margin:'auto', justifyContent: 'center'}}>
-          <Item addToCart={addItem} items={items}/>
-        </Grid>
-      </Grid>
-    </>
+    <Grid item xs>
+      <Typography id="heading">Items</Typography>
+      <Item addToCart={addItem} items={items} />
+    </Grid>
   );
 }
 

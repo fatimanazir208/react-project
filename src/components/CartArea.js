@@ -9,29 +9,22 @@ function CartArea(props) {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Typography id="heading">Cart</Typography>
         <Grid xs={12}>
-          <Typography id="heading">
-            Cart
-          </Typography>
+          <CartHeader />
         </Grid>
-        <Grid container style={{padding: '0px 30px', margin:'auto'}}>
-          <Grid xs={12}>
-            <CartHeader />
-          </Grid>
-          <Grid xs={12}>
-            <CartItem
+        <Grid xs={12}>
+          <CartItem
             cartItems={cartItems}
             removeItem={removeItem}
             addItem={addItem}
             decrementItem={decrementItem}
-            />
-          </Grid>
-          <Grid xs={12}>
-            <CartFooter cartItems={cartItems} emptyCart={emptyCart} />
-          </Grid>
+          />
         </Grid>
-
+        <Grid xs={12}>
+          <CartFooter cartItems={cartItems} emptyCart={emptyCart} />
+        </Grid>
       </Grid>
     </>
   );
