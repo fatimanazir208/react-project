@@ -1,12 +1,29 @@
 import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { gql, useMutation } from '@apollo/client';
 
-const Navbar = () => {
+const LOGOUT_USER = gql`
+  mutation {
+    signOut 
+  }
+`;
+
+
+function Navbar(props) {
+  const {isLoggedIn, setIsLoggedIn} = props;
   const navigate = useNavigate();
+  const [logoutUser] = useMutation(LOGOUT_USER);
 
   function handleClick(path) {
     console.log("handle click");
     navigate(path);
+  }
+
+  async function handleLogout() {
+    await logoutUser();
+    setIsLoggedIn(false);
+    localStorage.removeItem('authenticityToken');
+    navigate('/');
   }
 
   return (
@@ -18,7 +35,7 @@ const Navbar = () => {
           className="app-bar-title"
         >
           E-mart
-        </Typography>
+        </Typography>       
         <Button
           className="button-capitalize"
           color="inherit"
@@ -26,13 +43,25 @@ const Navbar = () => {
         >
           Create Item
         </Button>
-        <Button
-          className="button-capitalize"
-          color="inherit"
-          onClick={() => handleClick("/")}
-        >
-          Cart
-        </Button>
+        {isLoggedIn && 
+        <>
+          <Button
+            className="button-capitalize"
+            color="inherit"
+            onClick={() => handleClick("/")}
+          >
+            Stores
+          </Button>
+          <Button
+              className="button-capitalize"
+              color="inherit"
+              onClick={() => handleLogout()}
+            >
+            Logout
+          </Button>
+        </>
+        }
+        
       </Toolbar>
     </AppBar>
   );

@@ -1,4 +1,4 @@
-export const data = [
+export const itemsData = [
   {
       id: 0,
       title: "Audi",
